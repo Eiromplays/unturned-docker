@@ -9,27 +9,25 @@ curl -s https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz |
 mkdir -p /home/steam/.steam/sdk64/
 cp -f linux64/steamclient.so /home/steam/.steam/sdk64/steamclient.so
 
-# Optionlly install RocketMod
+# Optionlly install RocketMod, OpenMod or both
+export EXTRAS_DIR=$GAME_INSTALL_DIR/Extras
 export MODULES_DIR=$GAME_INSTALL_DIR/Modules
 mkdir -p $MODULES_DIR
 cd $MODULES_DIR
 
 if [ ! -d "$MODULES_DIR/Rocket.Unturned" ]; then
-    if [ "$SERVER_TYPE" == "rm4" ]; then
-        curl https://ci.rocketmod.net/job/Rocket.Unturned/lastSuccessfulBuild/artifact/Rocket.Unturned/bin/Release/Rocket.zip -o Rocket.zip
-        unzip Rocket.zip
-        mv Modules/* ./
-        rmdir Modules
-        rm -rf ./Scripts
-        rm README
-        rm Rocket.zip
-    elif [ "$SERVER_TYPE" == "rm5" ]; then
-        curl -L https://ci.appveyor.com/api/buildjobs/bjt7acowdq73nh4u/artifacts/Rocket.Unturned-5.0.0.237.zip -o Rocket.zip
-        unzip Rocket.zip
-        rm README.md
-        rm LICENSE
-        rm Rocket.zip
-    fi    
+    if [[ "$SERVER_TYPE"  == "rm" ||  "$SERVER_TYPE" == "ldm"  ||  "$SERVER_TYPE" == "both" ]]; then
+        cp -r /$EXTRAS_DIR/Rocket.Unturned ./
+    fi
+fi
+
+if [ ! -d "$MODULES_DIR/OpenMod.Unturned" ]; then
+    if [[ "$SERVER_TYPE"  == "om"  ||  "$SERVER_TYPE" == "both" ]]; then
+        curl -L https://github.com/openmod/openmod/releases/latest/download/OpenMod.Unturned.Module.zip -o OpenMod.zip
+        unzip OpenMod.zip
+        rm Readme.txt
+        rm OpenMod.zip
+    fi
 fi
 
 # Start game
