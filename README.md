@@ -41,7 +41,7 @@ Set GAME_INSTALL_DIR, SERVER_NAME, GAME_ID (304930 for normal Unturned, 1110390 
 $ export GAME_INSTALL_DIR=/path/to/Unturned
 $ export SERVER_NAME=YOUR_SERVER_INSTANCE_NAME
 $ export GAME_ID=1110390
-$ export SERVER_TYPE=rm4
+$ export SERVER_TYPE=both
 ```
 
 If you are not using the dedicated server app (1110390), you must also specify STEAM_USERNAME, STEAM_PASSWORD and STEAM_GUARD_TOKEN.
