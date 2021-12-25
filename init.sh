@@ -16,7 +16,7 @@ mkdir -p $MODULES_DIR
 cd $MODULES_DIR
 
 if [ ! -d "$MODULES_DIR/Rocket.Unturned" ]; then
-    if [[ "$SERVER_TYPE"  == "rm" ||  "$SERVER_TYPE" == "ldm"  ||  "$SERVER_TYPE" == "both" ]]; then
+    if [[ "$SERVER_TYPE"  == "rm" || "$SERVER_TYPE"  == "rm4" ||  "$SERVER_TYPE" == "ldm"  ||  "$SERVER_TYPE" == "both" ]]; then
         cp -r /$EXTRAS_DIR/Rocket.Unturned ./
     fi
 fi
